@@ -1,50 +1,47 @@
 package com.poc.coviddashboard.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table
+@Table(name = "slot_info_table")
 public class SlotInfoTable {
 
     @Id
-    @Column
-    private int slot_id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "slot_id")
+    private int slotId;
 
-    @Column
-    private int c_id;
+    @Column(name = "no_of_vaccines")
+    private int no_of_vaccines;
 
-    @Column
-    private int user_id;
-
-    @Column
+    @Column(name = "start_time")
     private LocalDateTime slot_time;
 
-    public int getSlot_id() {
-        return slot_id;
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @JoinColumn(name = "center_id",nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private CenterInfoTable center;
+
+    public int getSlotId() {
+        return slotId;
     }
 
-    public void setSlot_id(int slot_id) {
-        this.slot_id = slot_id;
+    public void setSlotId(int slotId) {
+        this.slotId = slotId;
     }
 
-    public int getC_id() {
-        return c_id;
+    public int getNo_of_vaccines() {
+        return no_of_vaccines;
     }
 
-    public void setC_id(int c_id) {
-        this.c_id = c_id;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setNo_of_vaccines(int no_of_vaccines) {
+        this.no_of_vaccines = no_of_vaccines;
     }
 
     public LocalDateTime getSlot_time() {
@@ -53,5 +50,14 @@ public class SlotInfoTable {
 
     public void setSlot_time(LocalDateTime slot_time) {
         this.slot_time = slot_time;
+    }
+
+    public SlotInfoTable(){}
+
+    public SlotInfoTable(int slot_id, int no_of_vaccines, int center_id, LocalDateTime slot_time, CenterInfoTable center) {
+        this.slotId = slot_id;
+        this.no_of_vaccines = no_of_vaccines;
+        this.slot_time = slot_time;
+        this.center = center;
     }
 }

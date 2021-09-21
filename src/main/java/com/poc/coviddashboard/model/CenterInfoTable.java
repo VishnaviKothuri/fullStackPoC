@@ -1,39 +1,36 @@
 package com.poc.coviddashboard.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table
 public class CenterInfoTable {
 
     @Id
-    @Column
-    private int c_id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="center_id")
+    int id;
 
-    @Column
+    @Column(name="pincode")
     private int pinCode;
 
-    @Column
+    @Column(name="city")
     private String c_city;
 
-    @Column
+    @Column(name="center_name")
     private String c_name;
 
-    @Column
-    private int no_of_slots;
+    @Column(name="state")
+    private String state;
 
-    @Column
+    @Column(name="vaccine_type")
     private String vaccine_type;
 
-    public int getC_id() {
-        return c_id;
+    public int getId() {
+        return id;
     }
 
-    public void setC_id(int c_id) {
-        this.c_id = c_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPinCode() {
@@ -60,12 +57,12 @@ public class CenterInfoTable {
         this.c_name = c_name;
     }
 
-    public int getNo_of_slots() {
-        return no_of_slots;
+    public String getState() {
+        return state;
     }
 
-    public void setNo_of_slots(int no_of_slots) {
-        this.no_of_slots = no_of_slots;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getVaccine_type() {
@@ -73,6 +70,28 @@ public class CenterInfoTable {
     }
 
     public void setVaccine_type(String vaccine_type) {
+        this.vaccine_type = vaccine_type;
+    }
+
+    @Override
+    public String toString() {
+        return "CenterInfoTable{" +
+                "c_id=" + id +
+                ", pinCode=" + pinCode +
+                ", c_city='" + c_city + '\'' +
+                ", c_name='" + c_name + '\'' +
+                ", state='" + state + '\'' +
+                ", vaccine_type='" + vaccine_type + '\'' +
+                '}';
+    }
+
+    public CenterInfoTable(){
+    }
+    public CenterInfoTable(int pinCode, String c_city, String c_name, String state, String vaccine_type) {
+        this.pinCode = pinCode;
+        this.c_city = c_city;
+        this.c_name = c_name;
+        this.state = state;
         this.vaccine_type = vaccine_type;
     }
 }

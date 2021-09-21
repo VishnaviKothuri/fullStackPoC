@@ -1,68 +1,88 @@
 package com.poc.coviddashboard.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.sql.Date;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
-@Table
+@Table(name="user_info_table")
 public class UserInfoTable {
-
+    
     @Id
-    @Column
-    private int user_id;
+    @GeneratedValue
+    @Column(name = "user_id")
+     long user_id;
 
-    @Column
-    private int adh_no;
+    @Column(name = "username")
+    private String name;
 
-    @Column
-    private String u_name;
+    @Column(name = "phone_no")
+    private int phoneNo;
 
-    @Column
-    private long ph_no;
+    @Column(name = "aadhar_no")
+    private long aadharNo;
 
-    @Column
-    private Date dob;
+    @Column(name = "date_of_birth")
+    private Date dateOfBirth;
 
-    public int getUser_id() {
+    @Column(name = "password")
+    private String password;
+
+    @Column(name= "logged_in")
+    private int loggedIn;
+
+    public long getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(long user_id) {
         this.user_id = user_id;
     }
 
-    public int getAdh_no() {
-        return adh_no;
+    public String getName() {
+        return name;
     }
 
-    public void setAdh_no(int adh_no) {
-        this.adh_no = adh_no;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getU_name() {
-        return u_name;
+    public int getPhoneNo() {
+        return phoneNo;
     }
 
-    public void setU_name(String u_name) {
-        this.u_name = u_name;
+    public void setPhoneNo(int phoneNo) {
+        this.phoneNo = phoneNo;
     }
 
-    public long getPh_no() {
-        return ph_no;
+    public long getAadharNo() {
+        return aadharNo;
     }
 
-    public void setPh_no(long ph_no) {
-        this.ph_no = ph_no;
+    public void setAadharNo(long aadharNo) {
+        this.aadharNo = aadharNo;
     }
 
-    public Date getDob() {
-        return dob;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDob(Date dob) {
-        this.dob = dob;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int isLoggedIn() {
+        return loggedIn;
+    }
+
+    public void setLoggedIn(int loggedIn) {
+        this.loggedIn = loggedIn;
     }
 }
